@@ -134,5 +134,6 @@ dmypy.json
 # VsCode
 .vscode/
 
-# Config File
+# Private Files
 config.ini
+acc_token.json
