@@ -1,10 +1,23 @@
 import requests
 import json
 import time
+import configparser
 import os.path
 
 ACC_TOKEN_FILE_NAME = 'acc_token.json'
 BASE_URL = 'https://openapi.koreainvestment.com:9443'
+
+
+def get_keys(config_file_nm: str) -> tuple:
+    if not os.path.exists(ACC_TOKEN_FILE_NAME):
+        return None, None
+
+    cp = configparser.ConfigParser()
+    cp.read(config_file_nm)
+    app_key = cp['Key']['AppKey']
+    app_secret = cp['Key']['AppSecret']
+
+    return app_key, app_secret
 
 
 def get_acc_token(app_key: str, app_secret: str) -> tuple:
