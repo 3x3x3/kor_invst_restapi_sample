@@ -60,8 +60,10 @@ def wait_close(ws: websocket.WebSocketApp):
 
 
 def on_message(ws: websocket.WebSocketApp, msg: str):
-    # 응답이 json으로 왔을때
-    if '{' == msg[0]:
+    first_str = msg[0]
+
+    # json으로 처리를 해야할 경우
+    if '0' != first_str and '1' != first_str:
         print(msg)
         return
 
