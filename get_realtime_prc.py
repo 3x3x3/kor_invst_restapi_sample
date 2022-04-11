@@ -64,6 +64,12 @@ def on_message(ws: websocket.WebSocketApp, msg: str):
 
     # json으로 처리를 해야할 경우
     if '0' != first_str and '1' != first_str:
+        rcv: dict = json.loads(msg)
+        trid = rcv["header"]["tr_id"]
+
+        if 'PINGPONG' == trid:
+            ws.send(msg)
+
         print(msg)
         return
 
