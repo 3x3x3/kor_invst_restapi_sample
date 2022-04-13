@@ -9,7 +9,7 @@ BASE_URL = 'https://openapi.koreainvestment.com:9443'
 
 
 def get_keys(config_file_nm: str) -> tuple:
-    if not os.path.exists(ACC_TOKEN_FILE_NAME):
+    if not os.path.exists(config_file_nm):
         return None, None
 
     cp = configparser.ConfigParser()
@@ -56,7 +56,7 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
 
 
 def get_account_infos(config_file_nm: str) -> tuple:
-    if not os.path.exists(ACC_TOKEN_FILE_NAME):
+    if not os.path.exists(config_file_nm):
         return None, None
 
     cp = configparser.ConfigParser()
