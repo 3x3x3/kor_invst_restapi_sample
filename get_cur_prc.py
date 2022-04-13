@@ -14,10 +14,15 @@ def main(shtcode: str) -> None:
         'tr_id': 'FHKST01010100',
     }
 
-    path = '/uapi/domestic-stock/v1/quotations/inquire-price'
-    req_url = f'{common.BASE_URL}/{path}?FID_COND_MRKT_DIV_CODE=J&FID_INPUT_ISCD={shtcode}'
+    req_body = {
+        'FID_COND_MRKT_DIV_CODE': 'J',
+        'FID_INPUT_ISCD': shtcode,
+    }
 
-    resp = requests.get(req_url, headers=req_header)
+    path = '/uapi/domestic-stock/v1/quotations/inquire-price'
+    req_url = f'{common.BASE_URL}/{path}'
+
+    resp = requests.get(req_url, headers=req_header, params=req_body)
     print(resp.text)
 
 
