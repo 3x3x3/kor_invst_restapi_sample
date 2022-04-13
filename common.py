@@ -53,3 +53,15 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
         f.write(json.dumps(data))
 
     return token_type, acc_token
+
+
+def get_account_infos(config_file_nm: str) -> tuple:
+    if not os.path.exists(ACC_TOKEN_FILE_NAME):
+        return None, None
+
+    cp = configparser.ConfigParser()
+    cp.read(config_file_nm)
+    acc_no = cp['Account']['AccNo']
+    acc_cd = cp['Account']['AccCd']
+
+    return acc_no, acc_cd
