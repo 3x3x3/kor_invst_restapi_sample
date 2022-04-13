@@ -7,3 +7,4 @@
 ## 파일 설명
 - get_cur_prc.py: 현재가 조회
 - get_realtime_prc.py: 실시간 체결 조회
+- get_balance.py: 잔고조회
