@@ -64,11 +64,7 @@ def get_hashkey(app_key: str, app_secret: str, data: dict) -> str:
         'appsecret': app_secret,
     }
 
-    req_body = {
-        'JsonBody': json.dumps(data),
-    }
-
-    resp: dict = requests.post(url=req_url, headers=req_header, json=req_body).json()
+    resp: dict = requests.post(url=req_url, headers=req_header, json=data).json()
 
     return resp.get('HASH')
 
