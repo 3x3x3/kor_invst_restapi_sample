@@ -55,6 +55,24 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
     return token_type, acc_token
 
 
+def get_hashkey(app_key: str, app_secret: str, data: dict) -> str:
+    req_url = f'{BASE_URL}/uapi/hashkey'
+
+    req_header = {
+        'content-type': 'application/json; charset=utf-8',
+        'appkey': app_key,
+        'appsecret': app_secret,
+    }
+
+    req_body = {
+        'JsonBody': json.dumps(data),
+    }
+
+    resp: dict = requests.post(url=req_url, headers=req_header, json=req_body).json()
+
+    return resp.get('HASH')
+
+
 def get_account_infos(config_file_nm: str) -> tuple:
     if not os.path.exists(config_file_nm):
         return None, None
