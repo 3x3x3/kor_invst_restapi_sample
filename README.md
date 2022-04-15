@@ -8,3 +8,4 @@
 - get_cur_prc.py: 현재가 조회
 - get_realtime_prc.py: 실시간 체결 조회
 - get_balance.py: 잔고조회
+- send_new_order.py: 신규주문
