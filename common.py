@@ -6,6 +6,7 @@ import os.path
 
 ACC_TOKEN_FILE_NAME = 'acc_token.json'
 BASE_REST_URL = 'https://openapi.koreainvestment.com:9443'
+BASE_WS_URL = 'ws://ops.koreainvestment.com:21000'
 
 
 def get_keys(config_file_nm: str) -> tuple:

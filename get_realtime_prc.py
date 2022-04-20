@@ -153,9 +153,7 @@ def on_open(ws: websocket.WebSocketApp):
 
 
 if __name__ == '__main__':
-    req_url = 'ws://ops.koreainvestment.com:21000'
-
     websocket.enableTrace(True)
-    websocket = websocket.WebSocketApp(req_url, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
+    websocket = websocket.WebSocketApp(common.BASE_WS_URL, on_open=on_open, on_message=on_message, on_error=on_error, on_close=on_close)
 
     websocket.run_forever()
