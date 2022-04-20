@@ -5,6 +5,10 @@ import threading
 import time
 
 
+aes_key: str = ''
+iv: str = ''
+
+
 def subscribe(ws: websocket.WebSocketApp):
     app_key, app_secret = common.get_keys('config.ini')
 
@@ -61,10 +65,17 @@ def on_message(ws: websocket.WebSocketApp, msg: str):
     # json으로 처리를 해야할 경우
     if '0' != first_str and '1' != first_str:
         rcv: dict = json.loads(msg)
-        trid = rcv["header"]["tr_id"]
+        trid = rcv['header']['tr_id']
 
         if 'PINGPONG' == trid:
             ws.send(msg)
+        elif 'H0STCNI0' == trid:
+            global aes_key
+            global iv
+
+            output = rcv['body']['output']
+            aes_key = output['key']
+            iv = output['iv']
 
         print(msg)
         return
