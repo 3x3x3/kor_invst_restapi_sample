@@ -3,6 +3,10 @@ import json
 import time
 import configparser
 import os.path
+import base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import unpad
+
 
 ACC_TOKEN_FILE_NAME = 'acc_token.json'
 BASE_REST_URL = 'https://openapi.koreainvestment.com:9443'
@@ -80,3 +84,8 @@ def get_account_infos(config_file_nm: str) -> tuple:
     acc_cd = cp['Account']['AccCd']
 
     return acc_no, acc_cd
+
+
+def decrypt_str(cipher_str: str, key: str, iv: str) -> str:
+    decryptor = AES.new(key.encode('utf-8'), AES.MODE_CBC, IV=iv.encode('utf-8'))
+    return bytes.decode(unpad(decryptor.decrypt(base64.b64decode(cipher_str)), AES.block_size))
