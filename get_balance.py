@@ -30,7 +30,7 @@ def main() -> None:
     }
 
     path = '/uapi/domestic-stock/v1/trading/inquire-balance'
-    req_url = f'{common.BASE_URL}/{path}'
+    req_url = f'{common.BASE_REST_URL}/{path}'
 
     resp = requests.get(req_url, headers=req_header, params=req_body)
     print(resp.text)

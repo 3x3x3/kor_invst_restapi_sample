@@ -28,7 +28,7 @@ def main(tr_id: str, shtcode: str, qty: int, prc: int) -> None:
     }
 
     path = '/uapi/domestic-stock/v1/trading/order-cash'
-    req_url = f'{common.BASE_URL}/{path}'
+    req_url = f'{common.BASE_REST_URL}/{path}'
 
     resp = requests.post(req_url, headers=req_header, json=req_body).json()
     print(resp)

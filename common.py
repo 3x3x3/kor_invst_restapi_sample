@@ -5,7 +5,7 @@ import configparser
 import os.path
 
 ACC_TOKEN_FILE_NAME = 'acc_token.json'
-BASE_URL = 'https://openapi.koreainvestment.com:9443'
+BASE_REST_URL = 'https://openapi.koreainvestment.com:9443'
 
 
 def get_keys(config_file_nm: str) -> tuple:
@@ -29,7 +29,7 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
             if int(time.time()) < expire_ts:
                 return acc_token_info.get('token_type'), acc_token_info.get('acc_token')
 
-    req_url = f'{BASE_URL}/oauth2/tokenP'
+    req_url = f'{BASE_REST_URL}/oauth2/tokenP'
 
     req_body = {
         'grant_type': 'client_credentials',
@@ -56,7 +56,7 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
 
 
 def get_hashkey(app_key: str, app_secret: str, data: dict) -> str:
-    req_url = f'{BASE_URL}/uapi/hashkey'
+    req_url = f'{BASE_REST_URL}/uapi/hashkey'
 
     req_header = {
         'content-type': 'application/json; charset=utf-8',
