@@ -5,12 +5,14 @@ import threading
 import time
 
 
+FILLED_EVT_TR_ID = 'H0STCNI0'
 aes_key: str = ''
 iv: str = ''
 
 
 def subscribe(ws: websocket.WebSocketApp):
     app_key, app_secret = common.get_keys('config.ini')
+    hts_id, _, _ = common.get_account_infos('config.ini')
 
     req = {
         'header': {
@@ -21,8 +23,8 @@ def subscribe(ws: websocket.WebSocketApp):
             'content-type': 'utf-8'},
         'body': {
             'input': {
-                'tr_id': 'H0STCNI0',
-                'tr_key': '',
+                'tr_id': FILLED_EVT_TR_ID,
+                'tr_key': hts_id,
             }
         }
     }
@@ -32,6 +34,7 @@ def subscribe(ws: websocket.WebSocketApp):
 
 def unsubscribe(ws: websocket.WebSocketApp):
     app_key, app_secret = common.get_keys('config.ini')
+    hts_id, _, _ = common.get_account_infos('config.ini')
 
     req = {
         'header': {
@@ -42,8 +45,8 @@ def unsubscribe(ws: websocket.WebSocketApp):
             'content-type': 'utf-8'},
         'body': {
             'input': {
-                'tr_id': 'H0STCNI0',
-                'tr_key': '',
+                'tr_id': FILLED_EVT_TR_ID,
+                'tr_key': hts_id,
             }
         }
     }
@@ -72,7 +75,7 @@ def on_message(ws: websocket.WebSocketApp, msg: str):
 
         if 'PINGPONG' == trid:
             ws.send(msg)
-        elif 'H0STCNI0' == trid:
+        elif FILLED_EVT_TR_ID == trid:
             output = rcv['body']['output']
             aes_key = output['key']
             iv = output['iv']
