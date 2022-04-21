@@ -80,10 +80,11 @@ def get_account_infos(config_file_nm: str) -> tuple:
 
     cp = configparser.ConfigParser()
     cp.read(config_file_nm)
+    hts_id = cp['Account']['HtsId']
     acc_no = cp['Account']['AccNo']
     acc_cd = cp['Account']['AccCd']
 
-    return acc_no, acc_cd
+    return hts_id, acc_no, acc_cd
 
 
 def decrypt_str(cipher_str: str, key: str, iv: str) -> str:

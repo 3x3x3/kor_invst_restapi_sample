@@ -3,5 +3,6 @@ AppKey=발급받은AppKey
 AppSecret=발급받은AppSecret
 
 [Account]
+HtsId=HTS로그인아이디
 AccNo=종합계좌번호(계좌번호의 앞 8자리)
 AccCd=계좌상품코드(계좌번호의 뒤 2자리)

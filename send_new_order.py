@@ -4,7 +4,7 @@ import requests
 
 def main(tr_id: str, shtcode: str, qty: int, prc: int) -> None:
     app_key, app_secret = common.get_keys('config.ini')
-    acc_no, acc_cd = common.get_account_infos('config.ini')
+    _, acc_no, acc_cd = common.get_account_infos('config.ini')
     token_type, acc_token = common.get_acc_token(app_key, app_secret)
 
     req_body = {
