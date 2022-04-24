@@ -20,7 +20,8 @@ def subscribe(ws: websocket.WebSocketApp):
             'appsecret': app_secret,
             'custtype': 'P',
             'tr_type': '1',
-            'content-type': 'utf-8'},
+            'content-type': 'utf-8'
+        },
         'body': {
             'input': {
                 'tr_id': FILLED_EVT_TR_ID,
@@ -42,7 +43,8 @@ def unsubscribe(ws: websocket.WebSocketApp):
             'appsecret': app_secret,
             'custtype': 'P',
             'tr_type': '2',
-            'content-type': 'utf-8'},
+            'content-type': 'utf-8'
+        },
         'body': {
             'input': {
                 'tr_id': FILLED_EVT_TR_ID,
