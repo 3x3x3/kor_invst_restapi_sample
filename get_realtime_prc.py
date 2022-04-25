@@ -7,16 +7,15 @@ import time
 
 def subscribe(ws: websocket.WebSocketApp, shtcode: str):
     app_key, app_secret = common.get_keys('config.ini')
-    token_type, acc_token = common.get_acc_token(app_key, app_secret)
 
     req = {
         'header': {
-            'authoriztion': acc_token,
             'appkey': app_key,
             'appsecret': app_secret,
             'custtype': 'P',
             'tr_type': '1',
-            'content-type': 'utf-8'},
+            'content-type': 'utf-8'
+        },
         'body': {
             'input': {
                 'tr_id': 'H0STCNT0',
@@ -30,16 +29,15 @@ def subscribe(ws: websocket.WebSocketApp, shtcode: str):
 
 def unsubscribe(ws: websocket.WebSocketApp, shtcode):
     app_key, app_secret = common.get_keys('config.ini')
-    token_type, acc_token = common.get_acc_token(app_key, app_secret)
 
     req = {
         'header': {
-            'authoriztion': acc_token,
             'appkey': app_key,
             'appsecret': app_secret,
             'custtype': 'P',
             'tr_type': '2',
-            'content-type': 'utf-8'},
+            'content-type': 'utf-8'
+        },
         'body': {
             'input': {
                 'tr_id': 'H0STCNT0',
