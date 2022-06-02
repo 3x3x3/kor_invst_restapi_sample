@@ -27,7 +27,7 @@ def get_keys(config_file_nm: str) -> tuple:
 
 def get_acc_token(app_key: str, app_secret: str) -> tuple:
     if os.path.exists(ACC_TOKEN_FILE_NAME):
-        with open('acc_token.json', 'r', encoding='utf-8') as f:
+        with open(ACC_TOKEN_FILE_NAME, 'r', encoding='utf-8') as f:
             acc_token_info: dict = json.loads(f.read())
             expire_ts = int(acc_token_info.get('expire_ts', 0))
 
@@ -48,7 +48,7 @@ def get_acc_token(app_key: str, app_secret: str) -> tuple:
     expire_ts: int = int(time.time()) + resp.get('expires_in', 0)
     acc_token: str = resp.get('access_token')
 
-    with open('acc_token.json', 'w', encoding='utf-8') as f:
+    with open(ACC_TOKEN_FILE_NAME, 'w', encoding='utf-8') as f:
         data = {
             'token_type': token_type,
             'acc_token': acc_token,
